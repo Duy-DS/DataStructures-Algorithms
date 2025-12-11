@@ -40,14 +40,7 @@ struct NodeTree {
     Node* right;
 };
 ```
-
-18
-        /    \
-      10      24
-     /  \    /  \
-    5   13  20   29
-     \     /  \  /
-      7   19  22 27
+.
       <img width="241" height="222" alt="image" src="https://github.com/user-attachments/assets/54ca084b-4a39-425b-b625-1de8e35c9c66" />
 
 Hãy viết dãy số trên của cây trên với phép duyệt NRL (Node-Right-Left). (1 điểm)
