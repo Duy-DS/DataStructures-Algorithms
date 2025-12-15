@@ -3,42 +3,43 @@
 using namespace std;
 
 /*
-* › t??ng cho s?p x?p t?ng d?n m?t m?ng cÛ N ph?n t?.
- ï T??ng t? nh? shell sort b?ng c·ch chia m?ng ban ??u th‡nh c·c m?ng con, s?p 
-x?p ch˙ng riÍng bi?t v‡ sau ?Û chia ch˙ng m?t l?n n?a ?? s?p x?p c·c m?ng con 
-m?i cho ??n khi to‡n b? m?ng ???c s?p x?p. 
-ï M?ng ban ??u ???c chia th‡nh hai m?ng con, m?ng ??u ch?a c·c gi· tr? nh? h?n 
-gi· tr? pivot v‡ m?ng sau ch?a c·c gi· tr? l?n h?n ho?c b?ng gi· tr? pivot.
- ï Qu· trÏnh ???c l?p l?i v?i c·c m?ng con
+* √ù t??ng cho s?p x?p t?ng d?n m?t m?ng c√≥ N ph?n t?.
+ ‚Ä¢ T??ng t? nh? shell sort b?ng c√°ch chia m?ng ban ??u th√†nh c√°c m?ng con, s?p 
+x?p ch√∫ng ri√™ng bi?t v√† sau ?√≥ chia ch√∫ng m?t l?n n?a ?? s?p x?p c√°c m?ng con 
+m?i cho ??n khi to√†n b? m?ng ???c s?p x?p. 
+‚Ä¢ M?ng ban ??u ???c chia th√†nh hai m?ng con, m?ng ??u ch?a c√°c gi√° tr? nh? h?n 
+gi√° tr? pivot v√† m?ng sau ch?a c√°c gi√° tr? l?n h?n ho?c b?ng gi√° tr? pivot.
+ ‚Ä¢ Qu√° tr√¨nh ???c l?p l?i v?i c√°c m?ng con
 */
 
 void ShellSort(int arr[], int n) {
-	int i, j, hCnt, h;
-	int increments[20], k;
-	// t?o m?t s? gia s? h thÌch h?p
-	for (h = 1, i = 0; h < n; i++) {
-		increments[i] = h;
-		h = 3 * h + 1;
+	int gapList[20];//ds cac khoang cach duoc tao ra
+	int gapCount=0;//so luong khoang cach duoc tao ra
+
+	//tao day cac gap theo cthuc: gap=3*gap+1
+	for(int gap=1; gap<n;gap=3*gap+1){
+		gapList[gapCount++]=gap;
 	}
 
-	//vÚng l?p trÍn s? l??ng c·c b??c t?ng kh·c nhau h
-	for (i--; i >= 0; i--) {
-		h = increments[i];
-		//vÚng l?p trÍn s? l??ng c·c m?ng con ???c s?p x?p h trong l?n l?p th? i
-		for (hCnt = h; hCnt < n; hCnt++) {
-			//s?p x?p chËn cho m?ng con ch?a m?i ph?n t? th? h
-			for (j = hCnt; j < n;) {
-				int tmp = arr[j];
-				k = j;
-				while (k - h >= 0 && tmp < arr[k - h]) {
-					arr[k] = arr[k - h];
-					k -= h;
-				}
-				arr[k] = tmp;
-				j += h;
+	//duyet cac gap tu lon den nho
+	for(int g=gapCount-1; g>=0;g--){
+		int gap = gapList[g];
+
+		//vs moi gap, thuc hien insertionSort tren cac phan tu
+		for(int i = gap; i<n;i++){
+			int currValue = arr[i];
+			int pos = i;
+
+			while(pos-gap>=0 && arr[pos-gap] > currValue){
+				arr[pos] = arr[pos-gap];
+				pos -= gap;
 			}
+
+			//chen currValue vao dung vi tri
+			arr[pos] = currValue;
 		}
 	}
+	
 }
 
 void ShellSort2(int arr[], int n) {
@@ -69,4 +70,5 @@ int main() {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 	return 0;
+
 }
