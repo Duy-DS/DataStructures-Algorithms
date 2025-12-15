@@ -17,7 +17,17 @@ void bubbleSort(int arr[], int n) {
 	}
 }
 
-void BubbleSort_Recursive(int arr[], int n){}
+void BubbleSort_Recursive(int arr[], int n){
+	//dieu kien dung: neu chi con 1 phan tu thi dung
+	if(n==1) return;
+	//thuc hien 1 luot bubble
+	for(int i=0; i<n-1; i++){
+		if(arr[i]>arr[i+1])
+			swap(arr[i], arr[i+1]);
+	}
+	//goi de quy
+	BubbleSort_Recursive(a, n-1);
+}
 
 void printArray(int arr[], int n) {
 	for (int i = 0; i < n; i++) {
@@ -39,5 +49,6 @@ int main() {
 	bubbleSort(arr, n);
 	printArray(arr, n);
 	delete[] arr;
+
 
 }
